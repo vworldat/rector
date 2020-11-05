@@ -7,6 +7,8 @@ namespace Rector\Set;
 use Nette\Utils\Strings;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\Util\StaticRectorStrings;
+use Rector\Set\ValueObject\DowngradeSetList;
+use Rector\Set\ValueObject\SetList;
 use ReflectionClass;
 use Symplify\SetConfigResolver\Exception\SetNotFoundException;
 use Symplify\SetConfigResolver\Provider\AbstractSetProvider;
@@ -22,16 +24,18 @@ final class RectorSetProvider extends AbstractSetProvider
     private const DASH_NUMBER_REGEX = '#\-(\d+)#';
 
     /**
+     * @var string[]
+     */
+    private const SET_CLASSES = [SetList::class, DowngradeSetList::class];
+
+    /**
      * @var Set[]
      */
     private $sets = [];
 
-    /**
-     * @param string[] $setClasses
-     */
-    public function __construct(array $setClasses)
+    public function __construct()
     {
-        foreach ($setClasses as $setClass) {
+        foreach (self::SET_CLASSES as $setClass) {
             $setListReflectionClass = new ReflectionClass($setClass);
             $this->hydrateSetsFromConstants($setListReflectionClass);
         }

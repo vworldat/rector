@@ -7,7 +7,6 @@ namespace Rector\Set;
 use Nette\Utils\Strings;
 use Rector\Core\Exception\ShouldNotHappenException;
 use Rector\Core\Util\StaticRectorStrings;
-use Rector\Set\ValueObject\SetList;
 use ReflectionClass;
 use Symplify\SetConfigResolver\Exception\SetNotFoundException;
 use Symplify\SetConfigResolver\Provider\AbstractSetProvider;
@@ -27,10 +26,15 @@ final class RectorSetProvider extends AbstractSetProvider
      */
     private $sets = [];
 
-    public function __construct()
+    /**
+     * @param string[] $setClasses
+     */
+    public function __construct(array $setClasses)
     {
-        $setListReflectionClass = new ReflectionClass(SetList::class);
-        $this->hydrateSetsFromConstants($setListReflectionClass);
+        foreach ($setClasses as $setClass) {
+            $setListReflectionClass = new ReflectionClass($setClass);
+            $this->hydrateSetsFromConstants($setListReflectionClass);
+        }
     }
 
     /**

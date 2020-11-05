@@ -6,6 +6,8 @@ namespace Rector\Core\Bootstrap;
 
 use Rector\Core\Set\SetResolver;
 use Rector\Set\RectorSetProvider;
+use Rector\Set\ValueObject\DowngradeSetList;
+use Rector\Set\ValueObject\SetList;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symplify\SetConfigResolver\ConfigResolver;
 use Symplify\SetConfigResolver\SetAwareConfigResolver;
@@ -32,7 +34,7 @@ final class RectorConfigsResolver
     {
         $this->setResolver = new SetResolver();
         $this->configResolver = new ConfigResolver();
-        $rectorSetProvider = new RectorSetProvider();
+        $rectorSetProvider = new RectorSetProvider([SetList::class, DowngradeSetList::class]);
         $this->setAwareConfigResolver = new SetAwareConfigResolver($rectorSetProvider);
     }
 

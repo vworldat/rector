@@ -6,13 +6,6 @@ on:
 jobs:
     provide_packagist_packages_json:
         runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                page:
-                    - 1
-                    - 2
-
 
         name: Get Top Downloaded Packages Json
 
@@ -30,7 +23,7 @@ jobs:
             # get top 10 packages
             -
                 id: set-matrix
-                run: echo "::set-output name=matrix::$(php ci/github_packages_json.php ${{ matrix.page }})"
+                run: echo "::set-output name=matrix::$(php ci/github_packages_json.php)"
 
         outputs:
             matrix: ${{ steps.set-matrix.outputs.matrix }}

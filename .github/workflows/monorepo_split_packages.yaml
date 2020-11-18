@@ -41,3 +41,4 @@ jobs:
                     split-repository-organization: 'rectorphp'
                     split-repository-name: '${{ matrix.package_name }}'
                     tag: ${{ steps.previous_tag.outputs.tag }}
+                    # todo add human email/name/photo

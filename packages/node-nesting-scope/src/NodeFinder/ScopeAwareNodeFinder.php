@@ -52,9 +52,8 @@ final class ScopeAwareNodeFinder
      */
     public function findParent(Node $node, callable $callable, array $allowedTypes): ?Node
     {
-        $parentNestingBreakTypes = array_diff(ControlStructure::BREAKING_SCOPE_NODE_TYPES, $allowedTypes);
-
         $this->isBreakingNodeFoundFirst = false;
+        $parentNestingBreakTypes = array_diff(ControlStructure::BREAKING_SCOPE_NODE_TYPES, $allowedTypes);
         $foundNode = $this->betterNodeFinder->findFirstPrevious($node, function (Node $node) use (
             $callable,
             $parentNestingBreakTypes

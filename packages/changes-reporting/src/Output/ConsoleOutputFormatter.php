@@ -73,10 +73,9 @@ final class ConsoleOutputFormatter implements OutputFormatterInterface
         if ($errorAndDiffCollector->getErrors() !== []) {
             return;
         }
-
+        $message = 'Rector is done!';
         $changeCount = $errorAndDiffCollector->getFileDiffsCount()
                      + $errorAndDiffCollector->getRemovedAndAddedFilesCount();
-        $message = 'Rector is done!';
         if ($changeCount > 0) {
             $message .= sprintf(
                 ' %d file%s %s.',

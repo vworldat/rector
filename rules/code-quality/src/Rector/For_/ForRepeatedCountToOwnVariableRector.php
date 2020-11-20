@@ -78,10 +78,9 @@ CODE_SAMPLE
      */
     public function refactor(Node $node): ?Node
     {
+        $forScope = $node->getAttribute(AttributeKey::SCOPE);
         $countInCond = null;
         $variableName = null;
-
-        $forScope = $node->getAttribute(AttributeKey::SCOPE);
 
         $this->traverseNodesWithCallable($node->cond, function (Node $node) use (
             &$countInCond,

@@ -121,12 +121,11 @@ final class PhpSpecRenaming
 
     private function removeNamePrefixes(string $name): string
     {
-        $originalName = $name;
-
         $name = StaticRectorStrings::removePrefixes(
             $name,
             ['it_should_have_', 'it_should_be', 'it_should_', 'it_is_', 'it_', 'is_']
         );
+        $originalName = $name;
 
         return $name ?: $originalName;
     }

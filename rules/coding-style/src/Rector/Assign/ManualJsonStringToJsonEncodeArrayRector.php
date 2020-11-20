@@ -140,13 +140,12 @@ CODE_SAMPLE
             // B. just start of a json? join with all the strings that concat so same variable
             $concatExpressionJoinData = $this->collectContentAndPlaceholderNodesFromNextExpressions($node);
 
+            $stringValue = $concatStringAndPlaceholders->getContent();
+            $stringValue .= $concatExpressionJoinData->getString();
             $placeholderNodes = array_merge(
                 $concatStringAndPlaceholders->getPlaceholderNodes(),
                 $concatExpressionJoinData->getPlaceholdersToNodes()
             );
-
-            $stringValue = $concatStringAndPlaceholders->getContent();
-            $stringValue .= $concatExpressionJoinData->getString();
 
             return $this->removeNodesAndCreateJsonEncodeFromStringValue(
                 $concatExpressionJoinData->getNodesToRemove(),

@@ -144,10 +144,9 @@ final class AssertTrueFalseToSpecificMethodRector extends AbstractPHPUnitRector
             if ($funcCallOrEmptyNodeName === null) {
                 return;
             }
-
-            $funcCallOrEmptyNodeArgs = $funcCallOrEmptyNode->args;
             $oldArguments = $node->args;
             unset($oldArguments[0]);
+            $funcCallOrEmptyNodeArgs = $funcCallOrEmptyNode->args;
 
             $node->args = $this->buildNewArguments(
                 $funcCallOrEmptyNodeName,

@@ -16,9 +16,9 @@ final class DifferentBundleNameRectorTest extends AbstractRectorTestCase
      */
     public function test(SmartFileInfo $fileInfo): void
     {
+        $temporaryBundleFilePath = $this->getTempPath() . '/DifferentNameBundle.php';
         // prepare bundle path
         $originalBundleFilePath = __DIR__ . '/FixtureDifferentBundleName/SomeActionBundle/DifferentNameBundle.php';
-        $temporaryBundleFilePath = $this->getTempPath() . '/DifferentNameBundle.php';
 
         $this->smartFileSystem->copy($originalBundleFilePath, $temporaryBundleFilePath, true);
 

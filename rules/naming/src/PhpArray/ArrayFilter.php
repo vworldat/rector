@@ -12,10 +12,9 @@ final class ArrayFilter
      */
     public function filterWithAtLeastTwoOccurences(array $values): array
     {
+        $duplicatedValues = [];
         /** @var array<string, int> $valueToCount */
         $valueToCount = array_count_values($values);
-
-        $duplicatedValues = [];
 
         foreach ($valueToCount as $value => $count) {
             /** @var int $count */

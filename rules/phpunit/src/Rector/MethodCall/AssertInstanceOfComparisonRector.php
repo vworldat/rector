@@ -90,11 +90,10 @@ final class AssertInstanceOfComparisonRector extends AbstractPHPUnitRector
         $oldArguments = $node->args;
         /** @var Instanceof_ $comparison */
         $comparison = $oldArguments[0]->value;
-
-        $class = $comparison->class;
         $argument = $comparison->expr;
 
         unset($oldArguments[0]);
+        $class = $comparison->class;
 
         $node->args = array_merge([
             new Arg($this->builderFactory->classConstFetch($class, 'class')),

@@ -250,7 +250,6 @@ CODE_SAMPLE
         }
 
         $classShortName = $class->name . 'Translation';
-        $filePath = dirname($fileInfo->getRealPath()) . DIRECTORY_SEPARATOR . $classShortName . '.php';
 
         $namespace = $class->getAttribute(AttributeKey::PARENT_NODE);
         if (! $namespace instanceof Namespace_) {
@@ -277,6 +276,7 @@ CODE_SAMPLE
         }
 
         $namespace->stmts[] = $class;
+        $filePath = dirname($fileInfo->getRealPath()) . DIRECTORY_SEPARATOR . $classShortName . '.php';
 
         $this->printToFile([$namespace], $filePath);
     }

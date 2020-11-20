@@ -115,9 +115,8 @@ CODE_SAMPLE
         FileWithoutNamespace $fileWithoutNamespace,
         string $expectedNamespace
     ): FileWithoutNamespace {
-        $nodes = $fileWithoutNamespace->stmts;
-
         $nodesWithStrictTypesThenNamespace = [];
+        $nodes = $fileWithoutNamespace->stmts;
         foreach ($nodes as $key => $fileWithoutNamespace) {
             if ($fileWithoutNamespace instanceof Declare_) {
                 $nodesWithStrictTypesThenNamespace[] = $fileWithoutNamespace;

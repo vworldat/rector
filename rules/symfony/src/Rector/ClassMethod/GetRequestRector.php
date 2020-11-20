@@ -111,9 +111,8 @@ CODE_SAMPLE
      */
     private function resolveUniqueName(Node $node, string $name): string
     {
-        $candidates = $node instanceof ClassMethod ? $node->params : $node->args;
-
         $candidateNames = [];
+        $candidates = $node instanceof ClassMethod ? $node->params : $node->args;
         foreach ($candidates as $candidate) {
             $candidateNames[] = $this->getName($candidate);
         }

@@ -134,9 +134,9 @@ CODE_SAMPLE
     {
         /** @var Array_ $arrayExpression */
         $arrayExpression = $arg->value;
+        $arrayCollectionArrayArguments = [];
         /** @var ArrayItem[] $firstArgumentArrayItems */
         $firstArgumentArrayItems = $arrayExpression->items;
-        $arrayCollectionArrayArguments = [];
         foreach ($firstArgumentArrayItems as $firstArgumentArrayItem) {
             if (! $firstArgumentArrayItem->key instanceof String_ || ! $firstArgumentArrayItem->value instanceof String_) {
                 throw new ShouldNotHappenException();

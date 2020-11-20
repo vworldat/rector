@@ -85,10 +85,9 @@ final class FileRelocationResolver
         string $separator,
         array $groupNames
     ): string {
-        $reversedNameParts = array_reverse($nameParts);
-
         $removedParts = [];
         $hasStopped = false;
+        $reversedNameParts = array_reverse($nameParts);
 
         foreach ($reversedNameParts as $key => $reversedNamePart) {
             unset($reversedNameParts[$key]);
@@ -121,10 +120,10 @@ final class FileRelocationResolver
      */
     private function resolveBeforeToAfterPartBetweenClassNames(string $oldClass, string $newClass): array
     {
-        $oldClassNameParts = explode(self::NAMESPACE_SEPARATOR, $oldClass);
         $newClassNameParts = explode(self::NAMESPACE_SEPARATOR, $newClass);
 
         $beforeToAfterParts = [];
+        $oldClassNameParts = explode(self::NAMESPACE_SEPARATOR, $oldClass);
         foreach ($oldClassNameParts as $key => $oldClassNamePart) {
             if (! isset($newClassNameParts[$key])) {
                 continue;

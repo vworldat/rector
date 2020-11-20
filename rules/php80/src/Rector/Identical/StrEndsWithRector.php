@@ -81,12 +81,11 @@ CODE_SAMPLE
             return null;
         }
 
-        $haystack = $substrFuncCall->args[0]->value;
-
         $needle = $this->matchUnaryMinusStrlenFuncCallArgValue($substrFuncCall->args[1]->value);
         if (! $this->areNodesEqual($needle, $comparedNeedleExpr)) {
             return null;
         }
+        $haystack = $substrFuncCall->args[0]->value;
 
         return $this->createFuncCall('str_ends_with', [$haystack, $needle]);
     }

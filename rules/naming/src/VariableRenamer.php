@@ -63,7 +63,6 @@ final class VariableRenamer
             (array) $functionLike->stmts,
             function (Node $node) use ($oldName, $expectedName, $assign, &$isRenamingActive): ?Variable {
                 if ($assign !== null && $node === $assign) {
-                    $isRenamingActive = true;
                     return null;
                 }
 
@@ -82,6 +81,7 @@ final class VariableRenamer
                 if ($this->isParamInParentFunction($node)) {
                     return null;
                 }
+                $isRenamingActive = true;
 
                 if (! $isRenamingActive) {
                     return null;

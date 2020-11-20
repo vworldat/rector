@@ -47,9 +47,8 @@ final class ClassUnusedPrivateClassMethodResolver
         $className = $this->nodeNameResolver->getName($class);
 
         $classMethodCalls = $this->nodeRepository->findMethodCallsOnClass($className);
-
-        $usedMethodNames = array_keys($classMethodCalls);
         $classPublicMethodNames = $this->classManipulator->getPublicMethodNames($class);
+        $usedMethodNames = array_keys($classMethodCalls);
 
         return $this->getUnusedMethodNames($class, $classPublicMethodNames, $usedMethodNames);
     }
@@ -99,9 +98,8 @@ final class ClassUnusedPrivateClassMethodResolver
         /** @var string $className */
         $className = $this->nodeNameResolver->getName($class);
 
-        $interfaces = class_implements($className);
-
         $interfaceMethods = [];
+        $interfaces = class_implements($className);
         foreach ($interfaces as $interface) {
             $interfaceMethods = array_merge($interfaceMethods, get_class_methods($interface));
         }
@@ -119,9 +117,8 @@ final class ClassUnusedPrivateClassMethodResolver
             return $unusedMethods;
         }
 
-        $parentClasses = class_parents($class);
-
         $parentAbstractMethods = [];
+        $parentClasses = class_parents($class);
 
         foreach ($parentClasses as $parentClass) {
             foreach ($unusedMethods as $unusedMethod) {

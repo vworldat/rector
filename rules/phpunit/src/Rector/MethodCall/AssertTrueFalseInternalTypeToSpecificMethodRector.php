@@ -121,13 +121,12 @@ final class AssertTrueFalseInternalTypeToSpecificMethodRector extends AbstractPH
         $firstArgumentValue = $isFunctionNode->args[0]->value;
         $isFunctionName = $this->getName($isFunctionNode);
 
+        $oldArguments = $node->args;
+        unset($oldArguments[0]);
         $newArgs = [
             new Arg(new String_(self::OLD_FUNCTIONS_TO_TYPES[$isFunctionName])),
             new Arg($firstArgumentValue),
         ];
-
-        $oldArguments = $node->args;
-        unset($oldArguments[0]);
 
         $node->args = $this->appendArgs($newArgs, $oldArguments);
 

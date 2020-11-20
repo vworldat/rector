@@ -219,14 +219,14 @@ CODE_SAMPLE
         /** @var Variable */
         $variable = $arrayItem->value;
         $variableName = $this->getName($variable) ?? '';
+
+        $iteratorToArrayFuncCall = new FuncCall(new Name('iterator_to_array'), [new Arg($arrayItem)]);
         // If the variable is not in scope, it's one we just added.
         // Then get the type from the attribute
         $type = $nodeScope->hasVariableType($variableName)
             ->yes() ? $nodeScope->getVariableType($variableName) : $arrayItem->getAttribute(
                 AttributeKey::ORIGINAL_TYPE
             );
-
-        $iteratorToArrayFuncCall = new FuncCall(new Name('iterator_to_array'), [new Arg($arrayItem)]);
 
         if ($type !== null) {
             // If we know it is an array, then print it directly
